@@ -1,0 +1,3 @@
+class CapitalsController < ApplicationController
+
+end
