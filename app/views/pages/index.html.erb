@@ -1,1 +1,12 @@
-<h1>RichPig</h1>
+<h1>Welcome to the RichPig website!</h1>
+<p>This website is designed to help you manage your finances.</p>
+<p>Two sections are presented for you. The first is our piggy bank, which will help you control the process of accumulating your funds to achieve your cherished goal.
+To go to the piggy bank, follow the link below.</p>
+
+<%= link_to 'Piggy bank', capitals_path, class: 'btn btn-secondary' %>
+
+<p>If you do not understand where your money is going, then we are ready to provide you with a convenient interface for accounting for your finances at the link below</p>
+
+<%= link_to 'Finances', finances_path, class: 'btn btn-secondary' %>
+
+<br>&copy; @zakhar <%= Time.now.year %>
