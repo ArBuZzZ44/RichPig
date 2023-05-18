@@ -1,10 +1,23 @@
 class CapitalsController < ApplicationController
 
-def new
+  def new
+    @capital = Capital.new 
+  end
 
-end
+  def create
+    @capital = Capital.new capital_params
 
-def create
+    if @capital.save
+      flash[:success] = 'You started saving money'
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
 
-end
+  private
+
+  def capital_params
+    params.require(:capital).permit(:goal, :amount, :period)
+  end
 end
