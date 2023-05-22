@@ -1,4 +1,5 @@
 <%= form_with model: @capital do |f| %>
+	<%= render 'shared/errors', object: @capital %>
 
 	<div>
 		<div>
@@ -22,7 +23,7 @@
 
 	<div>
 		<div>
-			<%= f.label "Period (month)" %>
+			<%= f.label :period, "Period (in months)" %>
 		</div>
 
 		<div>
