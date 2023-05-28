@@ -15,6 +15,10 @@ class CapitalsController < ApplicationController
     end
   end
 
+  def index
+    @capitals = Capital.all.order(created_at: :desc)
+  end
+
   private
 
   def capital_params
