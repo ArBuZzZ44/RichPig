@@ -9,7 +9,7 @@ class CapitalsController < ApplicationController
 
     if @capital.save
       flash[:success] = 'You started saving money'
-      redirect_to root_path
+      redirect_to capitals_path
     else
       render :new
     end
@@ -17,6 +17,10 @@ class CapitalsController < ApplicationController
 
   def index
     @capitals = Capital.all.order(created_at: :desc)
+    @capitals = @capitals.decorate
+  end
+
+  def show 
   end
 
   private
