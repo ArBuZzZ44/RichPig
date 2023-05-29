@@ -23,6 +23,14 @@ class CapitalsController < ApplicationController
   def show 
   end
 
+  def destroy
+    @capital = Capital.find params[:id]
+
+    @capital.destroy
+    flash[:success] = 'The goal has been deleted'
+    redirect_to capitals_path
+  end
+
   private
 
   def capital_params
