@@ -23,6 +23,21 @@ class CapitalsController < ApplicationController
   def show 
   end
 
+  def edit
+    @capital = Capital.find params[:id]
+  end
+
+  def update
+    @capital = Capital.find params[:id]
+    
+    if @capital.update capital_params
+      flash[:success] = 'Goal updated'
+      redirect_to capitals_path
+    else
+      render :edit 
+    end
+  end
+
   def destroy
     @capital = Capital.find params[:id]
 
