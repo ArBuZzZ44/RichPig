@@ -20,7 +20,9 @@ class CapitalsController < ApplicationController
     @capitals = @capitals.decorate
   end
 
-  def show 
+  def show
+    @capital = Capital.find params[:id]
+    @capital = @capital.decorate 
   end
 
   def edit
@@ -29,7 +31,7 @@ class CapitalsController < ApplicationController
 
   def update
     @capital = Capital.find params[:id]
-    
+
     if @capital.update capital_params
       flash[:success] = 'Goal updated'
       redirect_to capitals_path
@@ -49,6 +51,6 @@ class CapitalsController < ApplicationController
   private
 
   def capital_params
-    params.require(:capital).permit(:goal, :amount, :period)
+    params.require(:capital).permit(:goal, :amount, :period, :addition, :remains)
   end
 end
