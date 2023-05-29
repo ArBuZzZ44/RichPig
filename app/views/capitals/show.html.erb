@@ -1,0 +1,49 @@
+<article class="card my-3 col-6">
+	<section class="card-header">
+		<time datetime="<%= @capital.formatted_created_at %>">
+			<small><%= @capital.formatted_created_at %></small>		
+		</time>
+	</section>
+
+	<div class="card-body">
+
+		<h4>Goal: <%= @capital.goal %></h4>
+
+		<section class="card-text">
+			<p class="my-2">
+				Amount: <%= @capital.amount %>
+			</p>
+
+			<p class="my-2">
+				<!-- strip_tags - убирает html теги, truncate - ограничивает вывод до определенной длины -->
+				Period: <%= @capital.period %> 
+			</p>
+		</section>
+		<%= link_to "Edit", edit_capital_path(@capital), class: 'btn btn-secondary' %>
+		<%= link_to "Delete", capital_path(@capital), class: 'btn btn-danger', method: :delete, data: {confirm: "Are your sure?"} %>
+	</div>
+</article>
+
+<p>
+	You can reduce the amount by clicking the button at the bottom.
+</p>
+
+<%= form_with model: @capital do |f| %>
+	<div>
+		<div>
+			<%= f.label :addition, "Deposit amount" %>
+		</div>
+
+		<div>
+			<%= f.number_field :addition %>
+		</div>
+	</div>
+
+	<%= f.submit "Put money", class: "btn btn-primary" %>
+<% end %>
+
+<p>You have to save up:</p>
+<% if @capital.addition.present? %>
+	<% @capital_balance = @capital.amount - @capital.addition %>
+	<%= @capital_balance %>
+<% end %>
