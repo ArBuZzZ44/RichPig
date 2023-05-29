@@ -21,6 +21,7 @@
 				Period: <%= capital.period %> 
 			</p>
 		</section>
+		<%= link_to "Delete", capital_path(capital), class: 'btn btn-danger', method: :delete, data: {confirm: "Are your sure?"} %>
 	</div>
 </article>
 
