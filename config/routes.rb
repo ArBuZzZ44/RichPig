@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :capitals
+  resources :capitals do 
+    resources :additions
+  end
 
   resources :finances
 
