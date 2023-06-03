@@ -23,6 +23,9 @@ class CapitalsController < ApplicationController
   def show
     @capital = Capital.find params[:id]
     @capital = @capital.decorate 
+
+    @addition = @capital.additions.build
+    @additions = Addition.order created_at: :desc
   end
 
   def edit
