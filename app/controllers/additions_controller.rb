@@ -1,0 +1,3 @@
+class AdditionsController < ApplicationController
+  
+end
