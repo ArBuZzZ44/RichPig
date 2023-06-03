@@ -1,4 +1,5 @@
 class Capital < ApplicationRecord
+  has_many: :additions
 
   validates :goal, presence: true, length: { minimum: 3 }
   validates :amount, presence: true, numeric: true
