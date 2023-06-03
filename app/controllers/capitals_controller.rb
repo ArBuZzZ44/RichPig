@@ -51,6 +51,6 @@ class CapitalsController < ApplicationController
   private
 
   def capital_params
-    params.require(:capital).permit(:goal, :amount, :period, :addition, :remains)
+    params.require(:capital).permit(:goal, :amount, :period)
   end
 end

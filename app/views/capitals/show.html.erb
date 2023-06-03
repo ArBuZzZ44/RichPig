@@ -41,9 +41,3 @@
 
 	<%= f.submit "Put money", class: "btn btn-primary" %>
 <% end %>
-
-<p>You have to save up:</p>
-<% if @capital.addition.present? %>
-	<% @capital_balance = @capital.amount - @capital.addition %>
-	<%= @capital_balance %>
-<% end %>
