@@ -28,6 +28,8 @@
 	You can reduce the amount by clicking the button at the bottom.
 </p>
 
+<%= render 'shared/errors', object: @addition %>
+
 <%= form_with model: [@capital, @addition] do |f| %>
 	<div>
 		<div>
