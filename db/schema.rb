@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_16_125411) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_03_221910) do
+  create_table "additions", force: :cascade do |t|
+    t.integer "balance"
+    t.integer "capital_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["capital_id"], name: "index_additions_on_capital_id"
+  end
+
   create_table "capitals", force: :cascade do |t|
     t.integer "amount"
     t.integer "period"
@@ -27,4 +35,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_125411) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "additions", "capitals"
 end
