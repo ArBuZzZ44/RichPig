@@ -28,14 +28,14 @@
 	You can reduce the amount by clicking the button at the bottom.
 </p>
 
-<%= form_with model: @capital do |f| %>
+<%= form_with model: [@capital, @addition] do |f| %>
 	<div>
 		<div>
-			<%= f.label :addition, "Deposit amount" %>
+			<%= f.label :balance, "Deposit amount" %>
 		</div>
 
 		<div>
-			<%= f.number_field :addition %>
+			<%= f.number_field :balance %>
 		</div>
 	</div>
 
