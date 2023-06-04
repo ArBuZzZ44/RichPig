@@ -26,6 +26,7 @@ class CapitalsController < ApplicationController
 
     @addition = @capital.additions.build
     @additions = Addition.order created_at: :desc
+    @additions = @additions.decorate
   end
 
   def edit
