@@ -25,8 +25,10 @@ class CapitalsController < ApplicationController
     @capital = @capital.decorate 
 
     @addition = @capital.additions.build
-    @additions = Addition.order created_at: :desc
+    @additions = @capital.additions.order created_at: :desc
     @additions = @additions.decorate
+
+    @balance = @capital.additions.sum(:balance)
   end
 
   def edit
