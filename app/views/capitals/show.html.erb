@@ -41,5 +41,29 @@
 		</div>
 	</div>
 
+	</br>
+
 	<%= f.submit "Put money", class: "btn btn-primary" %>
+<% end %>
+
+</br>
+
+<% @additions.each do |addition| %>
+
+	<div class="col-sm">
+			<div class="card-body">
+				<section class="card-text mb-3">
+					<div class="col-sm-9">
+						<small><time datetime="<%= addition.formatted_created_at %>">
+							<%= addition.formatted_created_at %>		
+						</time></small>
+
+						<div class="mt-2">
+							Replenishment for <%= addition.balance %> 
+						</div>
+					</div>
+				</section>
+		</div>
+	</div>
+	<hr>
 <% end %>
