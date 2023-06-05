@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_03_221910) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_05_124724) do
   create_table "additions", force: :cascade do |t|
     t.integer "balance"
     t.integer "capital_id", null: false
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_03_221910) do
     t.string "goal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "not completed", null: false
   end
 
   create_table "finances", force: :cascade do |t|
