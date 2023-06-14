@@ -3,7 +3,6 @@ class AdditionsController < ApplicationController
   def create 
     @capital = Capital.find params[:capital_id]
     @addition = @capital.additions.build addition_params
-    @balance = @capital.additions.sum(:balance)
 
     if @addition.save
       flash[:success] = "You have replenished the piggy bank"
@@ -15,24 +14,17 @@ class AdditionsController < ApplicationController
       render "capitals/show"
     end
 
-    set_status
+    @balance = @capital.additions.sum(:balance)
 
+    if @balance >= @capital[:amount]
+      @capital[:status] = "done"
+      flash[:success] = "You have reached the goal!"
+      @capital.save
+    end
   end
 
 
-    def index 
-    end
-
-
   private 
-
-  def set_status
-    if @balance >= @capital[:amount]
-        @capital[:status] = "done"
-        flash[:success] = "Uraa"
-        @capital.save
-      end
-    end
 
   def addition_params
     params.require(:addition).permit(:balance)
