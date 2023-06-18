@@ -54,6 +54,11 @@ class CapitalsController < ApplicationController
     redirect_to capitals_path
   end
 
+  def completed 
+    @capitals = Capital.where(status: 'done').order(created_at: :desc)
+    @capitals = @capitals.decorate
+  end
+
   private
 
   def capital_params
