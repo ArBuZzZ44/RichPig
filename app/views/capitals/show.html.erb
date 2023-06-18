@@ -19,7 +19,9 @@
 				Period: <%= @capital.period %> 
 			</p>
 		</section>
-		<%= link_to "Edit", edit_capital_path(@capital), class: 'btn btn-secondary' %>
+		<% if @balance < @capital[:amount] %>
+			<%= link_to "Edit", edit_capital_path(@capital), class: 'btn btn-secondary' %>
+		<% end %>
 		<%= link_to "Delete", capital_path(@capital), class: 'btn btn-danger', method: :delete, data: {confirm: "Are your sure?"} %>
 	</div>
 </article>
@@ -50,8 +52,15 @@
 	<h4>
 		Congratulations! You have achieved your goal!
 	</h4>
+
 	<%= link_to "All completed goals", completed_capitals_path, class: "btn btn-success" %>
-  </br>
+
+  <h5 class="mt-3">
+  	Do you want to add a new goal?
+  </h5>
+
+  <%= link_to "New goal", new_capital_path, class: "btn btn-primary" %>
+	</br>
 <% end %>
 
 </br>
