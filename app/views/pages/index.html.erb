@@ -1,28 +1,12 @@
-<% @capitals.each do |capital| %>
-<article class="card my-3">
-	<section class="card-header">
-		<time datetime="<%= capital.formatted_created_at %>">
-			<small><%= capital.formatted_created_at %></small>		
-		</time>
-	</section>
+<h1>Welcome to the RichPig website!</h1>
+<p>This website is designed to help you manage your finances.</p>
+<p>Two sections are presented for you. The first is our piggy bank, which will help you control the process of accumulating your funds to achieve your cherished goal.
+To go to the piggy bank, follow the link below.</p>
 
-	<div class="card-body">
+<%= link_to 'Piggy bank', new_capital_path, class: 'btn btn-secondary' %>
 
-		<h4>Goal: <%= capital.goal %></h4>
+<p>If you do not understand where your money is going, then we are ready to provide you with a convenient interface for accounting for your finances at the link below</p>
 
-		<section class="card-text">
-			<p class="my-2">
-				Amount: <%= capital.amount %>
-			</p>
+<%= link_to 'Finances', new_finance_path, class: 'btn btn-secondary' %>
 
-			<p class="my-2">
-				<!-- strip_tags - убирает html теги, truncate - ограничивает вывод до определенной длины -->
-				Period: <%= capital.period %> 
-			</p>
-		</section>
-		<%= link_to "Show", capital_path(capital), class: 'btn btn-primary' %>
-		<%= link_to "Edit", edit_capital_path(capital), class: 'btn btn-secondary' %>
-		<%= link_to "Delete", capital_path(capital), class: 'btn btn-danger', method: :delete, data: {confirm: "Are your sure?"} %>
-	</div>
-</article>
-<% end %>
+<br>&copy; @zakhar <%= Time.now.year %>
