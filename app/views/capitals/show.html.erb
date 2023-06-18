@@ -24,26 +24,28 @@
 	</div>
 </article>
 
-<p>
-	You can reduce the amount by clicking the button at the bottom.
-</p>
+<% if @balance < @capital[:amount] %>
+	<p>
+		You can reduce the amount by clicking the button at the bottom.
+	</p>
 
-<%= render 'shared/errors', object: @addition %>
+	<%= render 'shared/errors', object: @addition %>
 
-<%= form_with model: [@capital, @addition] do |f| %>
-	<div>
+	<%= form_with model: [@capital, @addition] do |f| %>
 		<div>
-			<%= f.label :balance, "Deposit amount" %>
+			<div>
+				<%= f.label :balance, "Deposit amount" %>
+			</div>
+
+			<div>
+				<%= f.number_field :balance %>
+			</div>
 		</div>
 
-		<div>
-			<%= f.number_field :balance %>
-		</div>
-	</div>
+		</br>
 
-	</br>
-
-	<%= f.submit "Put money", class: "btn btn-primary" %>
+		<%= f.submit "Put money", class: "btn btn-primary" %>
+	<% end %>
 <% end %>
 
 </br>
