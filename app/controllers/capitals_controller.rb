@@ -16,7 +16,7 @@ class CapitalsController < ApplicationController
   end
 
   def index
-    @capitals = Capital.all.order(created_at: :desc)
+    @capitals = Capital.where(status: 'not completed').order(created_at: :desc)
     @capitals = @capitals.decorate
   end
 
