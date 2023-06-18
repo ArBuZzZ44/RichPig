@@ -46,6 +46,12 @@
 
 		<%= f.submit "Put money", class: "btn btn-primary" %>
 	<% end %>
+<% else %>
+	<h4>
+		Congratulations! You have achieved your goal!
+	</h4>
+	<%= link_to "All completed goals", completed_capitals_path, class: "btn btn-success" %>
+  </br>
 <% end %>
 
 </br>
