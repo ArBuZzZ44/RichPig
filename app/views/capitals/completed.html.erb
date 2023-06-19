@@ -1,4 +1,13 @@
-<h1>Your achieved goals:</h1>
+<div class="container text-center">
+	<div class="row justify-content-between">
+		<div class="col-auto me-auto">
+			<h1>Your achieved goals:</h1>
+		</div>
+		<div class="col-auto">
+			<%= link_to "New goal", new_capital_path, class: 'btn btn-primary btn-lg' %>
+		</div>
+	</div>
+</div>
 <% @capitals.each do |capital| %>
 <article class="card my-3">
 	<section class="card-header">
