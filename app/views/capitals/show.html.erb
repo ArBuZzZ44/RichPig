@@ -21,8 +21,8 @@
 		</section>
 		<% if @balance < @capital[:amount] %>
 			<%= link_to "Edit", edit_capital_path(@capital), class: 'btn btn-secondary' %>
+			<%= link_to "Delete", capital_path(@capital), class: 'btn btn-danger', method: :delete, data: {confirm: "Are your sure?"} %>
 		<% end %>
-		<%= link_to "Delete", capital_path(@capital), class: 'btn btn-danger', method: :delete, data: {confirm: "Are your sure?"} %>
 	</div>
 </article>
 
