@@ -1,2 +1,0 @@
-class Finance < ApplicationRecord
-end
