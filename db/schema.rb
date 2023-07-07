@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_04_144802) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_07_073537) do
   create_table "additions", force: :cascade do |t|
     t.integer "balance"
     t.integer "capital_id", null: false
@@ -40,6 +40,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_144802) do
     t.integer "payment"
     t.string "payment_type"
     t.date "payment_date"
+    t.integer "wallet_id", null: false
+    t.index ["wallet_id"], name: "index_payments_on_wallet_id"
   end
 
   create_table "profits", force: :cascade do |t|
@@ -48,7 +50,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_144802) do
     t.date "profit_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "wallet_id", null: false
+    t.index ["wallet_id"], name: "index_profits_on_wallet_id"
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.integer "budget"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "additions", "capitals"
+  add_foreign_key "payments", "wallets"
+  add_foreign_key "profits", "wallets"
 end
