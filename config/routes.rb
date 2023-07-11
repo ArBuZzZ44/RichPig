@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :additions
   end
 
-  resources :payments, :profits, :wallets
+  resources :wallets do 
+    resources :payments, :profits
+  end
 
 end
