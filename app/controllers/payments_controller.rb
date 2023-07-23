@@ -1,2 +1,4 @@
-class PaymentsController < ActionController::Base
+class PaymentsController < ApplicationController
+  def new
+  end
 end
