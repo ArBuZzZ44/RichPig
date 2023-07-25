@@ -15,6 +15,7 @@ class WalletsController < ApplicationController
   end
 
   def index
+		@wallets = Wallet.order(created_at: :desc)
   end
 
   private
