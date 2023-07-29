@@ -1,6 +1,6 @@
-class CreateProfits < ActiveRecord::Migration[7.0]
+class DropProfits < ActiveRecord::Migration[7.0]
   def change
-    create_table :profits do |t|
+		drop_table :profits do |t|
       t.integer :profit
       t.string :profit_type
       t.date :profit_date
