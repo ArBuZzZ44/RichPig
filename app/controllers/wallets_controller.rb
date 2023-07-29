@@ -14,6 +14,12 @@ class WalletsController < ApplicationController
     end
   end
 
+	def show
+		@wallet = Wallet.find params[:id]
+
+		@operation = @wallet.operations.build
+	end
+
   def index
 		@wallets = Wallet.order(created_at: :desc)
   end
