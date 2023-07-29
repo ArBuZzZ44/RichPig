@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :wallets do 
-    resources :payments, :profits
+    resources :operations
   end
 
 end
