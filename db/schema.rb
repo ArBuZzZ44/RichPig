@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_11_175106) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_29_203927) do
   create_table "additions", force: :cascade do |t|
     t.integer "balance"
     t.integer "capital_id", null: false
@@ -36,22 +36,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_175106) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "payments", force: :cascade do |t|
-    t.integer "payment"
-    t.string "payment_type"
-    t.date "payment_date"
+  create_table "operations", force: :cascade do |t|
+    t.string "operation_type"
+    t.integer "operation_amount"
+    t.date "operation_date"
     t.integer "wallet_id", null: false
-    t.index ["wallet_id"], name: "index_payments_on_wallet_id"
-  end
-
-  create_table "profits", force: :cascade do |t|
-    t.integer "profit"
-    t.string "profit_type"
-    t.date "profit_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "wallet_id", null: false
-    t.index ["wallet_id"], name: "index_profits_on_wallet_id"
+    t.index ["wallet_id"], name: "index_operations_on_wallet_id"
   end
 
   create_table "wallets", force: :cascade do |t|
@@ -63,6 +55,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_175106) do
   end
 
   add_foreign_key "additions", "capitals"
-  add_foreign_key "payments", "wallets"
-  add_foreign_key "profits", "wallets"
+  add_foreign_key "operations", "wallets"
 end
