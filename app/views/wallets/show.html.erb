@@ -27,7 +27,7 @@
 		</div>
 
 		<div class="mt-2">
-			<%= f.date_field :operation_date, value: Date.today %>
+			<%= f.date_field :operation_date, value: Date.today, min: @wallet.start_date, max: @wallet.end_date %>
 		</div>
 	</div>
 
