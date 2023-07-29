@@ -9,19 +9,14 @@
 	</div>
 </div>
 <% @wallets.each do |wallet| %>
-	<div class="accordion" id="accordionExample">
-		<div class="accordion-item">
-			<h2 class="accordion-header" id="headingOne">
-				<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					<%= wallet.budget %>
-				</button>
-			</h2>
-			<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-				<div class="accordion-body">
-					<%= wallet.start_date %> - <%= wallet.end_date %>
-				</div>
-			</div>
+	<div class="card mt-3">
+		<div class="card-header">
+			<%= wallet.start_date %> - <%= wallet.end_date %>
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">Budget for a given period</h5>
+			<p class="card-text"><%= wallet.budget %></p>
+			<%= link_to "More detailed", wallet_path(wallet), class: 'btn btn-primary' %>
 		</div>
 	</div>
-	</br>
 <% end %>
