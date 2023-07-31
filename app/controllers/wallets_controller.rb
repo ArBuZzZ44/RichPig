@@ -18,7 +18,7 @@ class WalletsController < ApplicationController
 		@wallet = Wallet.find params[:id]
 
 		@operation = @wallet.operations.build
-		@operations = @wallet.operations.order created_at: :desc
+		@operations = @wallet.operations.filter_operations(params[:filter]).order created_at: :desc
 
 		@operations = @operations.decorate
 	end
