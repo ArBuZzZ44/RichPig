@@ -33,3 +33,22 @@
 
 	<%= f.submit 'Submit', class: 'btn btn-primary mt-3' %>
 <% end %>
+
+<% @operations.each do |operation| %>
+	<div class="col-sm">
+		<div class="card-body">
+			<section class="card-text mb-3">
+				<div class="col-sm-9">
+					<small><time datetime="<%= operation.formatted_operation_date %>">
+						<%= operation.formatted_operation_date %>		
+					</time></small>
+
+					<div class="mt-2">
+						<%= operation.operation_amount %> 
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+	<hr>
+<% end %>
