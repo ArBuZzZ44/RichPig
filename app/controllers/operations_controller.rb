@@ -4,10 +4,15 @@ class OperationsController < ApplicationController
     @operation = @wallet.operations.build operation_params
 
 		if @operation.save
-			flash[:success] = "The operation was successful"
+			if @operation[:operation_type] == "Profit"
+				flash[:success] = "Your profit is recorded in the transaction summary"
+			else
+				flash[:success] = "Your expense is recorded in the transaction summary"
+			end
 			redirect_to wallet_path(@wallet)
 		else
 			@operations = @wallet.operations.order created_at: :desc
+			@operations = @operations.decorate
 			render "wallets/show"
 		end
 	end
