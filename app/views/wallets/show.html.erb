@@ -54,7 +54,11 @@
 					</time></small>
 
 					<div class="mt-2">
-						<%= operation.operation_amount %> 
+						<% if operation.operation_type == "Profit" %>
+							<p class="text-success">+<%= operation.operation_amount %></p>
+						<% else %>
+							<p class="text-danger">-<%= operation.operation_amount %></p>
+						<% end %>
 					</div>
 				</div>
 			</section>
