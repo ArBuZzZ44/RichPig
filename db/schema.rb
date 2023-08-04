@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_29_203927) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_04_075555) do
   create_table "additions", force: :cascade do |t|
     t.integer "balance"
     t.integer "capital_id", null: false
@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_203927) do
     t.integer "wallet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category"
     t.index ["wallet_id"], name: "index_operations_on_wallet_id"
   end
 
