@@ -27,6 +27,9 @@ class WalletsController < ApplicationController
 		@wallets = Wallet.order(created_at: :desc)
   end
 
+	def destroy
+	end
+
   private
 
   def wallet_params
