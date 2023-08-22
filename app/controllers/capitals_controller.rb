@@ -1,4 +1,5 @@
 class CapitalsController < ApplicationController
+	before_action :set_capital!, only: %i[show update edit destoy]
 
   def new
     @capital = Capital.new 
@@ -16,12 +17,11 @@ class CapitalsController < ApplicationController
   end
 
   def index
-    @capitals = Capital.where(status: 'not completed').order(created_at: :desc)
+    capitals_status('not completed')
     @capitals = @capitals.decorate
   end
 
   def show
-    @capital = Capital.find params[:id]
     @capital = @capital.decorate 
 
     @addition = @capital.additions.build
@@ -32,12 +32,9 @@ class CapitalsController < ApplicationController
   end
 
   def edit
-    @capital = Capital.find params[:id]
   end
 
   def update
-    @capital = Capital.find params[:id]
-
     if @capital.update capital_params
       flash[:success] = 'Goal updated'
       redirect_to capitals_path
@@ -47,15 +44,13 @@ class CapitalsController < ApplicationController
   end
 
   def destroy
-    @capital = Capital.find params[:id]
-
     @capital.destroy
     flash[:success] = 'The goal has been deleted'
     redirect_to capitals_path
   end
 
   def completed 
-    @capitals = Capital.where(status: 'done').order(created_at: :desc)
+    capitals_status('done')
     @capitals = @capitals.decorate
   end
 
@@ -64,4 +59,12 @@ class CapitalsController < ApplicationController
   def capital_params
     params.require(:capital).permit(:goal, :amount, :period, :status)
   end
+
+	def set_capital!
+		@capital = Capital.find params[:id]
+	end
+
+	def capitals_status(status)
+		@capitals = Capital.where(status: status).order(created_at: :desc)
+	end
 end
