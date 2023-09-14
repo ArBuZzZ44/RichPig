@@ -7,7 +7,7 @@ module Internationalization
 		private
 
 		def switch_locale(&action)
-			locale = localee_from_url || I18n.default_locale
+			locale = localee_from_url || I18n.default_locale || locale_from_header
 			I18n.with_locale(locale, &action)
 		end
 
@@ -15,6 +15,10 @@ module Internationalization
 			locale = params[:locale]
 
 			return locale if I18n.available_locales.map(&:to_s).include?(locale)
+		end
+
+		def locale_from_header
+			request.env['HTTP_ACCEPT_LANGUAGE'].scan(/[a-z]{2}/).first
 		end
 
 		def default_url_options
