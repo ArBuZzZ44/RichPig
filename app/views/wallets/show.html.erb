@@ -1,3 +1,26 @@
+<% provide :page_title, 'Capital' %>
+
+<div>
+	<h4>
+		The balance of the budget: <%= @balance_of_budget %>
+	</h4>
+	<% if @diff == 0 %>
+		<p style="font-size: 20px">
+			Today is the last day of this budget!
+		</p>
+	<% elsif @diff < 0 %>
+		<p style="font-size: 20px">
+			The validity period of this budget is over!
+		</p>
+	<% else %>
+		<p style="font-size: 20px">
+			<%= @diff %> days left
+		</p>
+	<% end %>
+</div>
+
+<hr style="width: 1000px">
+
 <%= form_with model: [@wallet ,@operation] do |f| %>
 	<%= render "shared/errors", object: @operation %>
 
@@ -6,7 +29,7 @@
 			<%= f.label :operation_type, "Type of operation" %>
 		</div>
 
-		<div class="mt-2">
+		<div class="mt-2" style="width: 1000px">
 			<%= f.select :operation_type, ['Profit', 'Expense'], {include_blank: "Select the type of operation"},
 				 {class: 'form-control', required: true} %>
 		</div>
@@ -17,7 +40,7 @@
 			<%= f.label :operation_amount, "Amount" %>
 		</div>
 
-		<div class="mt-2">
+		<div class="mt-2" style="width: 1000px">
 		<%= f.number_field :operation_amount, placeholder: 'Amount', class: 'form-control' %>
 		</div>
 	</div>
@@ -35,7 +58,7 @@
 	<%= f.submit 'Submit', class: 'btn btn-primary mt-3' %>
 <% end %>
 
-<hr>
+<hr style="width: 1000px">
 
 <%= form_with url: wallet_path(@wallet), method: :get do |form| %>
 	<div class="mt-3 mb-2">
@@ -64,5 +87,5 @@
 			</section>
 		</div>
 	</div>
-	<hr>
+	<hr style="width: 1000px">
 <% end %>
