@@ -1,4 +1,5 @@
 <% provide :page_title, 'New wallet' %>
+<% currently_at('Wallets') %>
 
 <%= form_with model: @wallet do |f| %>
 	<%= render "shared/errors", object: @wallet %>

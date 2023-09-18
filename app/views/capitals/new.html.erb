@@ -1,4 +1,5 @@
 <% provide :page_title, 'New capital' %>
+<% currently_at('Capitals') %>
 
 <%= form_with model: @capital do |f| %>
 	<%= render 'shared/errors', object: @capital %>

@@ -12,60 +12,7 @@
   </head>
 
   <body>
-   <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="navbar">
-    <div class="container-fluid">
-      <li><%= link_to "RichPig", root_path, class: "navbar-brand" %></li>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExample03">
-        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-          <li class="nav-item dropdown">
-            <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Capitals</a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Not completed", capitals_path, class: "dropdown-item" %>
-              <li><%= link_to "Completed", completed_capitals_path, class: "dropdown-item" %>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Wallets", wallets_path, class: "nav-link active" %>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Another</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">FAQ</a>
-          </li>
-        </ul>
-
-				<ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
-          <li class="dropdown">
-            <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white',
-              data: {"bs-toggle": 'dropdown'} do %>
-              <%= tag.div '', class: "flag #{I18n.locale}-flag mt-1" %>
-              <!-- название текущей локали -->
-              <%= t I18n.locale %>
-            <% end %>
-
-            <ul class="dropdown-menu">
-              <% I18n.available_locales.each do |locale| %>
-                <li>
-                  <% if I18n.locale == locale %>
-                    <%= tag.span t(locale), class: 'dropdown-item' %>
-                  <% else %>
-                    <%= link_to t(locale), root_path(locale: locale),
-                      class: 'dropdown-item' %>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-        </ul>
-
-      </div>
-    </div>
-  </nav>
+		<%= yield :main_menu %>
 
   <main class="container mt-3">
     
