@@ -10,7 +10,7 @@ class CapitalsController < ApplicationController
 
     if @capital.save
       flash[:success] = 'You started saving money'
-      redirect_to capitals_path
+      redirect_to capitals_path(anchor: "capital-#{@capital.id}")
     else
       render :new
     end

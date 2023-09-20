@@ -6,7 +6,7 @@ class AdditionsController < ApplicationController
 
     if @addition.save
       flash[:success] = "You have replenished the piggy bank"
-      redirect_to capital_path(@capital)
+      redirect_to capital_path(@capital, anchor: "addition-#{@addition.id}")
     else
       @additions = @capital.additions.order created_at: :desc
       @additions = @additions.decorate
