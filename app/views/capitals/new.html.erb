@@ -1,39 +1,4 @@
 <% provide :page_title, 'New capital' %>
 <% currently_at('Capitals') %>
 
-<%= form_with model: @capital do |f| %>
-	<%= render 'shared/errors', object: @capital %>
-
-	<div>
-		<div>
-			<%= f.label :goal %>
-		</div>
-
-		<div>
-			<%= f.text_field :goal, placeholder: "Goal", class: "form-control" %>
-		</div>
-	</div>
-
-	<div>
-		<div>
-			<%= f.label :amount %>
-		</div>
-
-		<div>
-			<%= f.number_field :amount %>
-		</div>
-	</div>
-
-	<div>
-		<div>
-			<%= f.label :period, "Period (in months)" %>
-		</div>
-
-		<div>
-			<%= f.number_field :period %>
-		</div>
-	</div>
-
-	<%= f.submit "Save my money", class: "btn btn-primary" %>
-
-<% end %>
+<%= render "form" %>

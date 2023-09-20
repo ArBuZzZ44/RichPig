@@ -34,23 +34,8 @@
 		You can reduce the amount by clicking the button at the bottom.
 	</p>
 
-	<%= render 'shared/errors', object: @addition %>
+	<%= render 'additions/form' %>
 
-	<%= form_with model: [@capital, @addition] do |f| %>
-		<div>
-			<div>
-				<%= f.label :balance, "Deposit amount" %>
-			</div>
-
-			<div>
-				<%= f.number_field :balance %>
-			</div>
-		</div>
-
-		</br>
-
-		<%= f.submit "Put money", class: "btn btn-primary" %>
-	<% end %>
 <% else %>
 	<h4>
 		Congratulations! You have achieved your goal!
@@ -68,25 +53,7 @@
 
 </br>
 
-<% @additions.each do |addition| %>
-
-	<div class="col-sm">
-			<div class="card-body" id="addition-<%= addition.id %>">
-				<section class="card-text mb-3">
-					<div class="col-sm-9">
-						<small><time datetime="<%= addition.formatted_created_at %>">
-							<%= addition.formatted_created_at %>		
-						</time></small>
-
-						<div class="mt-2">
-							Replenishment for <%= addition.balance %> 
-						</div>
-					</div>
-				</section>
-		</div>
-	</div>
-	<hr>
-<% end %>
+<%= render partial: "additions/addition", collection: @additions, as: :addition %>
 
 <% if @balance > 0 %>
 	<h4>Total amount: <%= @balance %></h4>

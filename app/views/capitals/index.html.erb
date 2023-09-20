@@ -11,41 +11,5 @@
 		</div>
 	</div>
 </div>
-<% @capitals.each do |capital| %>
-<article class="card my-3" style="width: 85%; left: 97px;" id="capital-<%= capital.id %>">
-	<section class="card-header">
-		<time datetime="<%= capital.formatted_created_at %>">
-			<small><%= capital.formatted_created_at %></small>		
-		</time>
-	</section>
 
-	<div class="card-body">
-
-		<h4>Goal: <%= capital.goal %></h4>
-
-		<section class="card-text">
-		<%# <progress style="width: 200px; height: 20px" id="progress-bar" value="85" max="100"></progress> %>
-			<div class="container">
-				<div class="row justify-content-between">
-					<div class="col-auto me-auto">
-						<p class="my-2">
-							Period: <%= capital.period %>
-						</p>
-
-						<p class="my-2">
-							<!-- strip_tags - убирает html теги, truncate - ограничивает вывод до определенной длины -->
-							Amount: <%= capital.amount %> 
-						</p>
-					</div>
-					<div class="col-auto mt-4">
-						<%= link_to "Show", capital_path(capital), class: 'btn btn-primary' %>
-						<%= link_to "Edit", edit_capital_path(capital), class: 'btn btn-secondary' %>
-						<%= link_to "Delete", capital_path(capital), class: 'btn btn-danger', method: :delete, data: {confirm: "Are your sure?"} %>
-					<div>
-				</div>
-			</div>
-		</section>
-	</div>
-</article>
-
-<% end %>
+<%= render partial: 'capitals/capital', collection: @capitals, as: :capital %>

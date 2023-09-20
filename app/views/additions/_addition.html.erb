@@ -1,0 +1,16 @@
+<div class="col-sm">
+	<div class="card-body" id="addition-<%= addition.id %>">
+		<section class="card-text mb-3">
+			<div class="col-sm-9">
+				<small><time datetime="<%= addition.formatted_created_at %>">
+					<%= addition.formatted_created_at %>		
+				</time></small>
+
+				<div class="mt-2">
+					Replenishment for <%= addition.balance %> 
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<hr>

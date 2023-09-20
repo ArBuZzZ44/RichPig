@@ -1,0 +1,16 @@
+<%= form_with model: [@capital, @addition] do |f| %>
+	<%= render 'shared/errors', object: @addition %>
+	<div>
+		<div>
+			<%= f.label :balance, "Deposit amount" %>
+		</div>
+
+		<div>
+			<%= f.number_field :balance %>
+		</div>
+	</div>
+
+	</br>
+
+	<%= f.submit "Put money", class: "btn btn-primary" %>
+<% end %>
