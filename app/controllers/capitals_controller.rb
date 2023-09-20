@@ -25,7 +25,7 @@ class CapitalsController < ApplicationController
     @capital = @capital.decorate 
 
     @addition = @capital.additions.build
-    @additions = @capital.additions.order created_at: :desc
+   	@pagy, @additions = pagy @capital.additions.order created_at: :desc
     @additions = @additions.decorate
 
     @balance = @capital.additions.sum(:balance)
@@ -65,6 +65,6 @@ class CapitalsController < ApplicationController
 	end
 
 	def capitals_status(status)
-		@capitals = Capital.where(status: status).order(created_at: :desc)
+		@pagy, @capitals = pagy Capital.where(status: status).order(created_at: :desc)
 	end
 end

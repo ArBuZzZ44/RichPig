@@ -11,6 +11,9 @@
 		</div>
 	</div>
 </div>
+
+<%== pagy_bootstrap_nav @pagy %>
+
 <% @wallets.each do |wallet| %>
 	<div class="card mt-3">
 		<div class="card-header">
@@ -23,3 +26,5 @@
 		</div>
 	</div>
 <% end %>
+
+<%== pagy_bootstrap_nav @pagy %>

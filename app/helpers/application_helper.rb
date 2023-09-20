@@ -1,4 +1,6 @@
 module ApplicationHelper
+	include Pagy::Frontend
+
 	def full_title(page_title = "")
 		base_title = "RichPig"
 		page_title.present? ? "#{page_title} | #{base_title}" : base_title

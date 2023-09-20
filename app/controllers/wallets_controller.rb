@@ -18,13 +18,19 @@ class WalletsController < ApplicationController
 		@wallet = Wallet.find params[:id]
 
 		@operation = @wallet.operations.build
-		@operations = @wallet.operations.filter_operations(params[:filter]).order created_at: :desc
+		@pagy, @operations = pagy @wallet.operations.filter_operations(params[:filter]).order created_at: :desc
 
 		@operations = @operations.decorate
+		
+		@sum_of_expenses = @wallet.operations.where(operation_type: 'Expense').sum(:operation_amount)
+		@balance_of_budget = @wallet[:budget] - @sum_of_expenses
+
+		@diff = (@wallet.end_date.to_date - Time.now.to_date).to_i
+		
 	end
 
   def index
-		@wallets = Wallet.order(created_at: :desc)
+		@pagy, @wallets = pagy Wallet.order(created_at: :desc)
   end
 
 	def destroy
