@@ -13,5 +13,7 @@ Rails.application.routes.draw do
 		resources :wallets do 
 			resources :operations
 		end
+
+		resources :users 
 	end
 end
