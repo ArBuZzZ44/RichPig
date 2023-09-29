@@ -9,11 +9,14 @@ class SessionsController < ApplicationController
 			flash[:success] = "Welcome back, #{current_user.name_or_email}"
 			redirect_to root_path
 		else
-			flash[:warning] = "Incorrect email and/or password"
+			flash.now[:warning] = "Incorrect email and/or password"
 			render :new
 		end
 	end
 
 	def destroy
+		sign_out
+		flash[:success] = "See your later!"
+		redirect_to root_path
 	end
 end
