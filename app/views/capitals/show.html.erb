@@ -53,11 +53,11 @@
 
 </br>
 
-<%== pagy_bootstrap_nav @pagy %>
+<%= pagination(@pagy) %>
 
 <%= render partial: "additions/addition", collection: @additions, as: :addition %>
 
-<%== pagy_bootstrap_nav @pagy %>
+<%= pagination(@pagy) %>
 
 <% if @balance > 0 %>
 	<h4>Total amount: <%= @balance %></h4>
