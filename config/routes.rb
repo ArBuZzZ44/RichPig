@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 			resources :operations
 		end
 
-		resources :users 
+		resources :users, only: %i[new create edit update]
 		
 		resource :session, only: %i[new create destroy]
 	end
