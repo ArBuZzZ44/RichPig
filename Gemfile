@@ -27,6 +27,7 @@ gem "jbuilder"
 gem 'rails-i18n', '~> 7'
 gem 'draper'
 gem 'pagy'
+gem 'valid_email2', '~> 4.0'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
