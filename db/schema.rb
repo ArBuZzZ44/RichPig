@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_28_160626) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_02_165834) do
   create_table "additions", force: :cascade do |t|
     t.integer "balance"
     t.integer "capital_id", null: false
@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_160626) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "remember_token_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
