@@ -10,8 +10,21 @@ module Authentication
 		end
 
 		def sign_out
+			forget(current_user)
 			session.delete(:user_id)
 			@current_user = nil
+		end
+
+		def remember(user)
+			cookies.encrypted.permanent[:remember_token] = user.remember_token
+			cookies.encrypted.permanent[:user_id] = user.id
+		end
+
+		# удаляем данные пользователя из куки
+		def forget(user)
+			user.forget_me
+			cookies.delete(:user_id)
+			cookies.delete(:remember_token)
 		end
 
 		def require_no_authentication
@@ -26,8 +39,17 @@ module Authentication
 			redirect_to root_path
 		end
 
+		# находим пользователя путем проверки действующей сессии и/или наличия куки
 		def current_user
-			@current_user ||= User.find_by(id: session[:user_id]).decorate if session[:user_id].present?
+			if session[:user_id].present?
+				@current_user ||= User.find_by(id: session[:user_id]).decorate
+			elsif cookies.encrypted[:user_id].present?
+				user = User.find_by(id: cookies.encrypted[:user_id])
+				if user && user.remember_token_authenticated?(cookies.encrypted[:remember_token])
+					sign_in(user)
+					@current_user ||= user.decorate
+				end
+			end
 		end
 
 		def user_signed_in?

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-	attr_accessor :old_password
+	attr_accessor :old_password, :remember_token
 
-	has_secure_password
+	has_secure_password validations: false
 
 	validate :correct_old_password, on: :update, if: -> {password.present?}
 	validate :password_presence
@@ -9,6 +9,32 @@ class User < ApplicationRecord
 	validates :password, confirmation: true, allow_blank: true,
 		length: {minimum: 8, maximum: 70}
 	validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
+
+	# здесь мы генерируем токен и посредством метода digest помещаем в бд хешированный токен
+	def remember_me
+		self.remember_token = SecureRandom.urlsafe_base64
+		update_column :remember_token_digest, digest(remember_token)
+	end
+
+	# забываем пользователя
+	def forget_me
+		update_column :remember_token_digest, nil
+		self.remember_token = nil
+	end
+
+	# Сравниваем хешированный токен из бд и токен, который получаем от юзера
+	def remember_token_authenticated?(remember_token)
+		return false unless remember_token_digest.present?
+
+		BCrypt::Password.new(remember_token_digest).is_password?(remember_token)
+	end
+
+	# хешируем наш токен
+	def digest(string)
+		cost = ActiveModel::SecurePassword.
+			min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+		BCrypt::Password.create(string, cost: cost)
+	end
 
 	private
 
