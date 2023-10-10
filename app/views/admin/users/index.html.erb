@@ -1,6 +1,12 @@
 <% provide :page_title, 'Admin Users' %>
 <% currently_at 'Users' %>
 
+<div class="btn-group mb-3">
+	<!-- кнопка для выгрузки данных в архив формат XLSX -->
+	<%= link_to 'Download zipped XLSX', admin_users_path(format: :zip),
+		 class: 'btn btn-secondary', data: {confirm: 'Are you sure?'} %>
+</div>
+
 <%= pagination(@pagy) %>
 
 <table class="table table-striped table-hover">
