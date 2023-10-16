@@ -1,5 +1,6 @@
 class Wallet < ApplicationRecord
   has_many :operations, dependent: :destroy
+	belongs_to :user
 
 	validates :budget, presence: true, numeric: true
 	validates :start_date, presence: true

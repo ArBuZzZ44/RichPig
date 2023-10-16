@@ -1,5 +1,6 @@
 class Capital < ApplicationRecord
   has_many :additions, dependent: :destroy
+	belongs_to :user
 
   validates :goal, presence: true, length: { minimum: 3 }
   validates :amount, presence: true, numeric: true

@@ -1,6 +1,9 @@
 class User < ApplicationRecord
 	attr_accessor :old_password, :remember_token
 
+	has_many :capitals, dependent: :destroy
+	has_many :wallets, dependent: :destroy
+
 	has_secure_password validations: false
 
 	validate :correct_old_password, on: :update, if: -> {password.present?}
