@@ -2,8 +2,7 @@
 
 class ApplicationPolicy
   attr_reader :user, :record
-
-  def initialize(user, record)
+  def initialize(user, record) # передается текущий пользователь и образец записи(образец класса active record)
     @user = user
     @record = record
   end
