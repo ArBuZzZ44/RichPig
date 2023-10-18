@@ -1,12 +1,14 @@
 class CapitalsController < ApplicationController
 	before_action :set_capital!, only: %i[show update edit destoy]
+	before_action :authorize_capital!
+	after_action :verify_authorized
 
   def new
     @capital = Capital.new 
   end
 
   def create
-    @capital = Capital.new capital_params
+    @capital = current_user.capitals.build capital_params
 
     if @capital.save
       flash[:success] = 'You started saving money'
@@ -66,5 +68,9 @@ class CapitalsController < ApplicationController
 
 	def capitals_status(status)
 		@pagy, @capitals = pagy Capital.where(status: status).order(created_at: :desc)
+	end
+
+	def authorize_capital!
+		authorize(@capital || Capital)
 	end
 end
