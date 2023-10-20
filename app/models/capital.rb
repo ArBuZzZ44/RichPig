@@ -1,4 +1,5 @@
 class Capital < ApplicationRecord
+	include Authorship
   has_many :additions, dependent: :destroy
 	belongs_to :user
 
