@@ -67,7 +67,7 @@ class CapitalsController < ApplicationController
 	end
 
 	def capitals_status(status)
-		@pagy, @capitals = pagy Capital.where(status: status).order(created_at: :desc)
+		@pagy, @capitals = pagy Capital.where(status: status, user_id: current_user.id).order(created_at: :desc)
 	end
 
 	def authorize_capital!
