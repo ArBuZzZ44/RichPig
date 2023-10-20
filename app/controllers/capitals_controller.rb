@@ -1,5 +1,5 @@
 class CapitalsController < ApplicationController
-	before_action :set_capital!, only: %i[show update edit destoy]
+	before_action :set_capital!, only: %i[show update edit destroy]
 	before_action :authorize_capital!
 	after_action :verify_authorized
 
