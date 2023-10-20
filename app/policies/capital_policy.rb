@@ -1,14 +1,18 @@
 class CapitalPolicy < ApplicationPolicy
 	def index?
-    true
+    user_present?
   end
 
+	def completed?
+		user_present?
+	end
+
   def show?
-    true
+    user.author?(record)
   end
 
   def create?
-    user.present?
+    user_present?
   end
 
   def update?
