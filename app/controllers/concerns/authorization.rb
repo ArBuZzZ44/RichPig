@@ -10,7 +10,7 @@ module Authorization
 
 		def user_not_authorized
 			flash[:danger] = "You are not authorized for this action!"
-			redirect_to(request.preferer || root_path)
+			redirect_to(request.referer || root_path)
 		end
 	end
 end
