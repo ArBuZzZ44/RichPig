@@ -3,7 +3,7 @@
 class ApplicationPolicy
   attr_reader :user, :record
   def initialize(user, record) # передается текущий пользователь и образец записи(образец класса active record)
-    @user = user
+    @user = user || GuestUser.new
     @record = record
   end
 
@@ -34,6 +34,8 @@ class ApplicationPolicy
   def destroy?
     false
   end
+
+	private
 
   class Scope
     def initialize(user, scope)

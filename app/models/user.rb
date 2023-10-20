@@ -20,6 +20,10 @@ class User < ApplicationRecord
 		obj.user == self
 	end
 
+	def guest?
+		false
+	end
+
 	# здесь мы генерируем токен и посредством метода digest помещаем в бд хешированный токен
 	def remember_me
 		self.remember_token = SecureRandom.urlsafe_base64

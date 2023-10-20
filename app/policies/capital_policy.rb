@@ -1,10 +1,10 @@
 class CapitalPolicy < ApplicationPolicy
 	def index?
-    user_present?
+    !user.guest?
   end
 
 	def completed?
-		user_present?
+		!user.guest?
 	end
 
   def show?
@@ -12,14 +12,14 @@ class CapitalPolicy < ApplicationPolicy
   end
 
   def create?
-    user_present?
+    !user.guest?
   end
 
   def update?
-    false
+    user.admin_role? || user.moderator_role? || user.author?(record)
   end
 
   def destroy?
-    false
+    user.admin_role? || user.moderator_role? || user.author?(record)
   end
 end
