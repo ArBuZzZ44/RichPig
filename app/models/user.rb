@@ -16,6 +16,10 @@ class User < ApplicationRecord
 	validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
 	validates :role, presence: true
 
+	def author?(obj)
+		obj.user == self
+	end
+
 	# здесь мы генерируем токен и посредством метода digest помещаем в бд хешированный токен
 	def remember_me
 		self.remember_token = SecureRandom.urlsafe_base64
