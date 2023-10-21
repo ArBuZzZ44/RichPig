@@ -1,4 +1,5 @@
 class Wallet < ApplicationRecord
+	include Authorship
   has_many :operations, dependent: :destroy
 	belongs_to :user
 
