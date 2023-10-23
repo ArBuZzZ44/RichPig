@@ -1,5 +1,6 @@
 class WalletsController < ApplicationController
 	before_action :set_wallet!, only: %i[show update edit destroy]
+	before_action :require_authentication
 	before_action :authorize_wallet!
 	after_action :verify_authorized
 
