@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 		
 		resource :session, only: %i[new create destroy]
 
+		resource :password_reset, only: %i[new create edit update]
+
 		namespace :admin do 
 			resources :users, only: %i[index create edit update destroy]
 		end
