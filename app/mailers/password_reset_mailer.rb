@@ -1,4 +1,4 @@
-class PasswordResetMailer < ActionMailer
+class PasswordResetMailer < ApplicationMailer
 	def reset_email
 		@user = params[:user]
 
