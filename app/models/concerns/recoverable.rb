@@ -3,7 +3,7 @@ module Recoverable
 
 	included do
 		# такая же функция обратного вызова, как и before_action
-		# т.к. в базе есть password_digest, то rails может проверить, изменялся ли он
+		# т.к. в базе есть password_digest, то rails может проверить, изменялся ли он методом changed?
 		before_update :clear_password_reset_token, if: :password_digest_changed?
 
     def set_password_reset_token
