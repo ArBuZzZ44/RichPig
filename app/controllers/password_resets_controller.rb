@@ -19,7 +19,12 @@ class PasswordResetsController < ApplicationController
 	end
 
 	def update
-
+		if @user.update user_params
+			flash[:success] = "Your password was reset!"
+			redirect_to new_session_path
+		else
+			render :edit
+		end
 	end
 
 	private
