@@ -1,9 +1,10 @@
 class User < ApplicationRecord
 	include Recoverable
+	include Rememberable
 
 	enum role: { basic: 0, moderator: 1, admin: 2 }, _suffix: :role
 
-	attr_accessor :old_password, :remember_token, :admin_edit
+	attr_accessor :old_password, :admin_edit
 
 	has_many :capitals, dependent: :destroy
 	has_many :wallets, dependent: :destroy
@@ -24,25 +25,6 @@ class User < ApplicationRecord
 
 	def guest?
 		false
-	end
-
-	# здесь мы генерируем токен и посредством метода digest помещаем в бд хешированный токен
-	def remember_me
-		self.remember_token = SecureRandom.urlsafe_base64
-		update_column :remember_token_digest, digest(remember_token)
-	end
-
-	# забываем пользователя
-	def forget_me
-		update_column :remember_token_digest, nil
-		self.remember_token = nil
-	end
-
-	# Сравниваем хешированный токен из бд и токен, который получаем от юзера
-	def remember_token_authenticated?(remember_token)
-		return false unless remember_token_digest.present?
-
-		BCrypt::Password.new(remember_token_digest).is_password?(remember_token)
 	end
 
 	# хешируем наш токен
