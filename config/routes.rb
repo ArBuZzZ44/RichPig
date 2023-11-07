@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+	class AdminConstraint
+		def matches?(request)
+			user_id = request.session[:user_id] || request.cookie_jar.encrypted[:user_id]
+
+			User.find_by(id: user_id)&.admin_role?
+		end
+	end
+
 	scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
 		root 'pages#index'
 
@@ -21,7 +29,7 @@ Rails.application.routes.draw do
 		resource :password_reset, only: %i[new create edit update]
 
 		namespace :admin do 
-			resources :users, only: %i[index create edit update destroy]
+			resources :users, only: %i[index create edit update destroy], constraints: AdminConstraint.new
 		end
 	end
 end
