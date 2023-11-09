@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
 	has_many :capitals, dependent: :destroy
 	has_many :wallets, dependent: :destroy
+	has_one_attached :avatar
 
 	has_secure_password validations: false
 
