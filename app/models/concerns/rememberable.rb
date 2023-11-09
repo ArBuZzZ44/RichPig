@@ -1,4 +1,4 @@
-module Authorship
+module Rememberable
 	extend ActiveSupport::Concern
 
 	included do
