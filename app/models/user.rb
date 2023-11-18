@@ -19,6 +19,8 @@ class User < ApplicationRecord
 		length: {minimum: 8, maximum: 70}
 	validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
 	validates :role, presence: true
+	validate :correct_file_type
+	validate :acceptable_image_size
 
 	def author?(obj)
 		obj.user == self
@@ -53,5 +55,17 @@ class User < ApplicationRecord
 		return if BCrypt::Password.new(password_digest_was).is_password?(old_password)
 
 		errors.add(:old_password, 'is incorrect')
+	end
+
+	def correct_file_type
+		if avatar.attached? && !avatar.content_type.in?(%w(image/jpeg image/png))
+			errors.add(:avatar, 'must be a JPEG or PNG')
+		end
+	end
+
+	def acceptable_image_size
+		if avatar.attached? && avatar.byte_size > 2.megabyte
+			errors.add(:avatar, 'is too large')
+		end
 	end
 end
